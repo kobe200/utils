@@ -1,0 +1,22 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:paddingTop="100px" >
+
+    <Button
+        android:id="@+id/copylog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/openWindow"
+        android:text="拷贝日志" />
+    <Button
+        android:id="@+id/cancel_copylog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/copylog"
+        android:text="取消拷贝日志" />
+    
+
+</RelativeLayout>

@@ -11,22 +11,45 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GsonActivity extends AppCompatActivity {
     private final String tag = "gson";
-    private String json = "{\"rst\": 100,\"msg\": \"ok\",\"data\": {\"cookie\": \"JSESSIONID=abcntKeuJhop56LGykfdw\"}}";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gson);
-        Gson gson = new Gson();
-        JsonRootBean jsonRootBean = gson.fromJson(json,JsonRootBean.class);
-        Log.i(tag,"==jsonRootBean.rst==" + jsonRootBean.getRst());
-        Log.i(tag,"==jsonRootBean.msg==" + jsonRootBean.getMsg());
-        Log.i(tag,"==jsonRootBean.data==" + jsonRootBean.getData().getCookie());
-        Log.i(tag,"==to json==" + gson.toJson(jsonRootBean));
+        test2();
+    }
 
+    private void test2() {
+        Gson gson = new Gson();
+        Audio audio = new Audio();
+        List<Audio.PackageCfg> packages = new ArrayList<>();
+        Audio.PackageCfg pc0 = new Audio.PackageCfg();
+        packages.add(pc0);
+        Audio.PackageCfg pc1 = new Audio.PackageCfg("com.radio",1);
+        packages.add(pc1);
+        Audio.PackageCfg pc2 = new Audio.PackageCfg("com.music",1);
+        packages.add(pc2);
+        Audio.PackageCfg pc3 = new Audio.PackageCfg("com.video",1);
+        packages.add(pc3);
+        Audio.PackageCfg pc8 = new Audio.PackageCfg("com.ipod",1);
+        packages.add(pc8);
+        Audio.PackageCfg pc4 = new Audio.PackageCfg("com.bluetooth.music",1);
+        packages.add(pc4);
+        Audio.PackageCfg pc7 = new Audio.PackageCfg("com.mxmap",2);
+        packages.add(pc7);
+        Audio.PackageCfg pc9 = new Audio.PackageCfg("com.iflytek",3);
+        packages.add(pc9);
+        Audio.PackageCfg pc5 = new Audio.PackageCfg("com.bluetooth.phone",4);
+        packages.add(pc5);
+        Audio.PackageCfg pc6 = new Audio.PackageCfg("com.tbox.phone",5);
+        packages.add(pc6);
+        audio.packages = packages;
+        Log.i(tag,"==to json==" + gson.toJson(audio));
         //从文件中读取配置信息，需要先把配置文件放到指定目录下
         File file = new File("/storage/emulated/legacy/Download/other/gsonTest.cfg");
         if(file != null && file.exists()) {
@@ -55,14 +78,9 @@ public class GsonActivity extends AppCompatActivity {
                     e.printStackTrace();
                 }
             }
-            Log.i(tag,"====file stringBuffer.toString()====" + stringBuffer.toString());
-            JsonRootBean jsonRootBean2 = gson.fromJson(stringBuffer.toString(),JsonRootBean.class);
-            Log.i(tag,"==file jsonRootBean.rst==" + jsonRootBean2.getRst());
-            Log.i(tag,"==file jsonRootBean.msg==" + jsonRootBean2.getMsg());
-            Log.i(tag,"==file jsonRootBean.data==" + jsonRootBean.getData().getCookie());
+            Audio audio2 = gson.fromJson(stringBuffer.toString(),Audio.class);
+            Log.i(tag,"====file stringBuffer.toString()====" + audio2.toString());
         }
-
     }
-
 
 }

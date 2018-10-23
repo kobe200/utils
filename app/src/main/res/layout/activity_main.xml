@@ -15,5 +15,11 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/openWindow"
         android:text="log" />
+    <Button
+        android:id="@+id/gson"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/log"
+        android:text="gson" />
 
 </RelativeLayout>

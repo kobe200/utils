@@ -68,17 +68,8 @@ public class DateUtil {
      *
      */
     public enum DayTime {
-        /**
-         * 半天
-         **/
         HALFDAY(12 * 60 * 60 * 1000L),
-        /**
-         * 一天
-         **/
         ONEDAY(24 * 60 * 60 * 1000L),
-        /**
-         * 两天
-         **/
         TWODAY(2 * 24 * 60 * 60 * 1000L);
         public long dayTime;
 

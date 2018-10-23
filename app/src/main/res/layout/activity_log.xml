@@ -17,6 +17,24 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/copylog"
         android:text="取消拷贝日志" />
-    
+    <Button
+        android:id="@+id/copylog1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/cancel_copylog"
+        android:text="命令拷贝日志" />
+    <Button
+        android:id="@+id/delete_copylog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/copylog1"
+        android:text="命令删除USB日志" />
+    <Button
+        android:id="@+id/create_anr_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/delete_copylog"
+        android:text="生成一个anr文件" />
+
 
 </RelativeLayout>

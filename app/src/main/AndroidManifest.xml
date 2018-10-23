@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.kobe.kobedemo">
+          package="com.kobe.kobedemo"
+        android:sharedUserId="android.uid.system">
 
 
     <!-- 显示顶层浮窗 -->
@@ -34,6 +35,10 @@
             android:theme="@style/AppTheme" />
         <activity
             android:name="com.kobe.kobedemo.log.LogActivity"
+            android:launchMode="singleTask"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name="com.kobe.kobedemo.gson.GsonActivity"
             android:launchMode="singleTask"
             android:theme="@style/AppTheme" />
     </application>

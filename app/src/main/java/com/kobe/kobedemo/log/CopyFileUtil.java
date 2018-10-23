@@ -5,6 +5,7 @@
 
 package com.kobe.kobedemo.log;
 
+import android.os.StatFs;
 import android.util.Log;
 
 import java.io.BufferedReader;
@@ -325,6 +326,48 @@ public class CopyFileUtil {
         } else {
             return true;
         }
+    }
+
+    public void copyOrder(String filePath , String usbPath){
+        try {
+            Runtime.getRuntime().exec("cp  " + filePath + "  " + usbPath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static UsbDeviceInfo fileSize(String path) {
+        UsbDeviceInfo info = null;
+        try {
+            StatFs statfs = new StatFs(path);
+            // 获取SDCard上BLOCK总数
+            long nTotalBlocks = statfs.getBlockCountLong();
+            Log.i(TAG,"===nTotalBlocks===" + nTotalBlocks);
+            // 获取SDCard上每个block的SIZE
+            long nBlocSize = statfs.getBlockSizeLong();
+            Log.i(TAG,"===nBlocSize===" + nBlocSize);
+            // 获取可供程序使用的Block的数量
+            long nAvailaBlock = statfs.getAvailableBlocksLong();
+            Log.i(TAG,"===nAvailaBlock===" + nAvailaBlock);
+            // 获取剩下的所有Block的数量(包括预留的一般程序无法使用的块)
+            long nFreeBlock = statfs.getFreeBlocksLong();
+            Log.i(TAG,"===nFreeBlock===" + nFreeBlock);
+            info = new UsbDeviceInfo();
+            // 计算SDCard 总容量大小MB
+            info.total = nTotalBlocks * nBlocSize;
+            Log.i(TAG,"===info.total===" + info.total);
+            // 计算 SDCard 剩余大小MB
+            info.free = nAvailaBlock * nBlocSize;
+            Log.i(TAG,"===info.free===" + info.free);
+        } catch(IllegalArgumentException e) {
+            Log.e(TAG,e.toString());
+        }
+        return info;
+    }
+
+    public static class UsbDeviceInfo {
+        public long total;
+        public long free;
     }
 
 }
